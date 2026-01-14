@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>رسالة حب لنهى</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Tahoma', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }/* Floating hearts */
+.heart-bg {
+  position: absolute;
+  font-size: 18px;
+  color: rgba(255, 105, 180, 0.6);
+  animation: floatUp 10s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh) scale(1);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  to {
+    transform: translateY(-10vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 25px;
+  padding: 35px 30px 25px;
+  max-width: 520px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  animation: fadeIn 2.5s ease;
+}
+h1 {
+  color: #c9184a;
+  margin-bottom: 18px;
+  font-size: 30px;
+}
+p {
+  font-size: 19px;
+  line-height: 1.9;
+  color: #333;
+}
+.heart {
+  font-size: 42px;
+  margin-bottom: 10px;
+  animation: beat 1.6s infinite;
+}
+.music-btn {
+  margin-top: 20px;
+  background: #c9184a;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 22px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+footer {
+  margin-top: 18px;
+  font-size: 15px;
+  color: #666;
+}
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+  </style>
+</head>
+<body onclick="startMusicOnce()">  <!-- Background Music -->  <audio id="bgMusic" loop preload="auto">
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>  <div class="card">
+    <div class="heart">🤍</div>
+    <h1>نهى</h1>
+    <p>
+      نهى…<br>
+      وجودچ بحياتي هدوء ما يشبه شي،<br>
+      وكلامچ يطمني حتى لو الدنيا كلها ضدّي.<br><br>
+      أحبچ بهدوء، بس حب ثابت،<br>
+      حب ما يحتاج ضجيج حتى يكون صادق.<br><br>
+      وياچ أحس نفسي بمكاني الصحيح،<br>
+      وأتمنى أبقى سبب ابتسامتچ طول العمر.
+    </p><button class="music-btn" onclick="toggleMusic(event)">⏸️ إيقاف / ▶️ تشغيل</button>
+
+<footer>
+  — من شخص قلبه اختارچ بدون تردد 🤍
+</footer>
+
+  </div>  <script>
+    const music = document.getElementById('bgMusic');
+    let started = false;
+    let isPlaying = false;
+
+    function startMusicOnce() {
+      if (!started) {
+        music.play();
+        started = true;
+        isPlaying = true;
+      }
+    }
+
+    function toggleMusic(e) {
+      e.stopPropagation();
+      if (isPlaying) {
+        music.pause();
+      } else {
+        music.play();
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // Generate floating hearts
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart-bg';
+      heart.textContent = '🤍';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 12000);
+    }, 800);
+  </script></body>
+</html>
